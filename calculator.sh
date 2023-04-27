@@ -7,6 +7,7 @@ function is_operator { [[ "$1" =~ ^[-+*/]$ ]] ; }
 
 function is_valid_input { (( "$#" == 3 )) && is_int "$1" && is_operator "$2" && is_int "$3" ; }
 
+function calculate { echo $(( "$1" "$2" "$3" )) ; }
 
 # get user input
 echo "Enter an arithmetic operation:"
@@ -16,7 +17,7 @@ read -a USER_INPUT -r
 # test user input
 if is_valid_input "${USER_INPUT[@]}"
 then
-    echo 'Operation check passed!'
+    calculate "${USER_INPUT[@]}"
 else
     echo 'Operation check failed!'
 fi
